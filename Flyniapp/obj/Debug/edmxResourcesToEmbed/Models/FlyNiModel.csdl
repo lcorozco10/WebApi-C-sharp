@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FLYNIDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Airline">
+    <Key>
+      <PropertyRef Name="id_airline" />
+    </Key>
+    <Property Name="id_airline" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="airline_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="office_phone" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="office_fax" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="reservation_phone" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="reservation_fax" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="hours_care" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="airline_url" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+    <Property Name="image_url" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Flight" Relationship="Self.FK_Flight_Airline" FromRole="Airline" ToRole="Flight" />
+  </EntityType>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="id_city" />
+    </Key>
+    <Property Name="id_city" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="city_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Flight" Relationship="Self.FK_Flight_City" FromRole="City" ToRole="Flight" />
+  </EntityType>
+  <EntityType Name="Flight">
+    <Key>
+      <PropertyRef Name="id_reg" />
+    </Key>
+    <Property Name="id_reg" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_flight_type" Type="Int32" Nullable="false" />
+    <Property Name="id_airline" Type="Int32" Nullable="false" />
+    <Property Name="flight_number" Type="Int32" Nullable="false" />
+    <Property Name="id_city" Type="Int32" Nullable="false" />
+    <Property Name="time_dep_arri" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="id_status" Type="Int32" Nullable="false" />
+    <Property Name="fecha_reg" Type="DateTime" Nullable="false" Precision="7" />
+    <NavigationProperty Name="Airline" Relationship="Self.FK_Flight_Airline" FromRole="Flight" ToRole="Airline" />
+    <NavigationProperty Name="City" Relationship="Self.FK_Flight_City" FromRole="Flight" ToRole="City" />
+    <NavigationProperty Name="Flight_type" Relationship="Self.FK_Flight_Flight_type" FromRole="Flight" ToRole="Flight_type" />
+    <NavigationProperty Name="Status" Relationship="Self.FK_Flight_Status" FromRole="Flight" ToRole="Status" />
+  </EntityType>
+  <EntityType Name="Flight_category">
+    <Key>
+      <PropertyRef Name="id_category_flight" />
+    </Key>
+    <Property Name="id_category_flight" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="category_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Flight_type" Relationship="Self.FK_Flight__type_Flight_category" FromRole="Flight_category" ToRole="Flight_type" />
+  </EntityType>
+  <EntityType Name="Flight_type">
+    <Key>
+      <PropertyRef Name="id_flight_type" />
+    </Key>
+    <Property Name="id_flight_type" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_category_flight" Type="Int32" Nullable="false" />
+    <Property Name="type_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Flight" Relationship="Self.FK_Flight_Flight_type" FromRole="Flight_type" ToRole="Flight" />
+    <NavigationProperty Name="Flight_category" Relationship="Self.FK_Flight__type_Flight_category" FromRole="Flight_type" ToRole="Flight_category" />
+  </EntityType>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="id_status" />
+    </Key>
+    <Property Name="id_status" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="status_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Flight" Relationship="Self.FK_Flight_Status" FromRole="Status" ToRole="Flight" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Flight_Airline">
+    <End Role="Airline" Type="Self.Airline" Multiplicity="1" />
+    <End Role="Flight" Type="Self.Flight" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Airline">
+        <PropertyRef Name="id_airline" />
+      </Principal>
+      <Dependent Role="Flight">
+        <PropertyRef Name="id_airline" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Flight_City">
+    <End Role="City" Type="Self.City" Multiplicity="1" />
+    <End Role="Flight" Type="Self.Flight" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="id_city" />
+      </Principal>
+      <Dependent Role="Flight">
+        <PropertyRef Name="id_city" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Flight_Flight_type">
+    <End Role="Flight_type" Type="Self.Flight_type" Multiplicity="1" />
+    <End Role="Flight" Type="Self.Flight" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Flight_type">
+        <PropertyRef Name="id_flight_type" />
+      </Principal>
+      <Dependent Role="Flight">
+        <PropertyRef Name="id_flight_type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Flight_Status">
+    <End Role="Status" Type="Self.Status" Multiplicity="1" />
+    <End Role="Flight" Type="Self.Flight" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="id_status" />
+      </Principal>
+      <Dependent Role="Flight">
+        <PropertyRef Name="id_status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Flight__type_Flight_category">
+    <End Role="Flight_category" Type="Self.Flight_category" Multiplicity="1" />
+    <End Role="Flight_type" Type="Self.Flight_type" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Flight_category">
+        <PropertyRef Name="id_category_flight" />
+      </Principal>
+      <Dependent Role="Flight_type">
+        <PropertyRef Name="id_category_flight" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FLYNIDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Airline" EntityType="Self.Airline" />
+    <EntitySet Name="City" EntityType="Self.City" />
+    <EntitySet Name="Flight" EntityType="Self.Flight" />
+    <EntitySet Name="Flight_category" EntityType="Self.Flight_category" />
+    <EntitySet Name="Flight_type" EntityType="Self.Flight_type" />
+    <EntitySet Name="Status" EntityType="Self.Status" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <AssociationSet Name="FK_Flight_Airline" Association="Self.FK_Flight_Airline">
+      <End Role="Airline" EntitySet="Airline" />
+      <End Role="Flight" EntitySet="Flight" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Flight_City" Association="Self.FK_Flight_City">
+      <End Role="City" EntitySet="City" />
+      <End Role="Flight" EntitySet="Flight" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Flight_Flight_type" Association="Self.FK_Flight_Flight_type">
+      <End Role="Flight_type" EntitySet="Flight_type" />
+      <End Role="Flight" EntitySet="Flight" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Flight_Status" Association="Self.FK_Flight_Status">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Flight" EntitySet="Flight" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Flight__type_Flight_category" Association="Self.FK_Flight__type_Flight_category">
+      <End Role="Flight_category" EntitySet="Flight_category" />
+      <End Role="Flight_type" EntitySet="Flight_type" />
+    </AssociationSet>
+    <FunctionImport Name="sp_getAllFlight" ReturnType="Collection(FLYNIDBModel.sp_getAllFlight_Result)">
+      <Parameter Name="id_flight_type" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_getFlight" ReturnType="Collection(FLYNIDBModel.sp_getFlight_Result)">
+      <Parameter Name="id_reg_db" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(FLYNIDBModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_setFlight">
+      <Parameter Name="id_flight_type" Mode="In" Type="Int32" />
+      <Parameter Name="city_name" Mode="In" Type="String" />
+      <Parameter Name="flight_number" Mode="In" Type="Int32" />
+      <Parameter Name="time_dep_arri" Mode="In" Type="Time" />
+      <Parameter Name="status_name" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="sp_getAllFlight_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="DateTime" Name="registro" Nullable="false" />
+    <Property Type="String" Name="category_name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="type_name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="airline_name" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="flight_number" Nullable="false" />
+    <Property Type="String" Name="city_name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="time" Nullable="true" MaxLength="7" />
+    <Property Type="String" Name="status_name" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="sp_getFlight_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="DateTime" Name="Registro" Nullable="false" />
+    <Property Type="String" Name="category_name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="type_name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="airline_name" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="flight_number" Nullable="false" />
+    <Property Type="String" Name="city_name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="time" Nullable="true" MaxLength="7" />
+    <Property Type="String" Name="status_name" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+</Schema>

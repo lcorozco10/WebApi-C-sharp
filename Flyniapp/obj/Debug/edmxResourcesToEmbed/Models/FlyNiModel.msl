@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FLYNIDBModelStoreContainer" CdmEntityContainer="FLYNIDBEntities">
+    <EntitySetMapping Name="Airline">
+      <EntityTypeMapping TypeName="FLYNIDBModel.Airline">
+        <MappingFragment StoreEntitySet="Airline">
+          <ScalarProperty Name="id_airline" ColumnName="id_airline" />
+          <ScalarProperty Name="airline_name" ColumnName="airline_name" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="office_phone" ColumnName="office_phone" />
+          <ScalarProperty Name="office_fax" ColumnName="office_fax" />
+          <ScalarProperty Name="reservation_phone" ColumnName="reservation_phone" />
+          <ScalarProperty Name="reservation_fax" ColumnName="reservation_fax" />
+          <ScalarProperty Name="hours_care" ColumnName="hours_care" />
+          <ScalarProperty Name="airline_url" ColumnName="airline_url" />
+          <ScalarProperty Name="image_url" ColumnName="image_url" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="City">
+      <EntityTypeMapping TypeName="FLYNIDBModel.City">
+        <MappingFragment StoreEntitySet="City">
+          <ScalarProperty Name="id_city" ColumnName="id_city" />
+          <ScalarProperty Name="city_name" ColumnName="city_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Flight">
+      <EntityTypeMapping TypeName="FLYNIDBModel.Flight">
+        <MappingFragment StoreEntitySet="Flight">
+          <ScalarProperty Name="id_reg" ColumnName="id_reg" />
+          <ScalarProperty Name="id_flight_type" ColumnName="id_flight_type" />
+          <ScalarProperty Name="id_airline" ColumnName="id_airline" />
+          <ScalarProperty Name="flight_number" ColumnName="flight_number" />
+          <ScalarProperty Name="id_city" ColumnName="id_city" />
+          <ScalarProperty Name="time_dep_arri" ColumnName="time_dep_arri" />
+          <ScalarProperty Name="id_status" ColumnName="id_status" />
+          <ScalarProperty Name="fecha_reg" ColumnName="fecha_reg" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Flight_category">
+      <EntityTypeMapping TypeName="FLYNIDBModel.Flight_category">
+        <MappingFragment StoreEntitySet="Flight_category">
+          <ScalarProperty Name="id_category_flight" ColumnName="id_category_flight" />
+          <ScalarProperty Name="category_name" ColumnName="category_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Flight_type">
+      <EntityTypeMapping TypeName="FLYNIDBModel.Flight_type">
+        <MappingFragment StoreEntitySet="Flight_type">
+          <ScalarProperty Name="id_flight_type" ColumnName="id_flight_type" />
+          <ScalarProperty Name="id_category_flight" ColumnName="id_category_flight" />
+          <ScalarProperty Name="type_name" ColumnName="type_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Status">
+      <EntityTypeMapping TypeName="FLYNIDBModel.Status">
+        <MappingFragment StoreEntitySet="Status">
+          <ScalarProperty Name="id_status" ColumnName="id_status" />
+          <ScalarProperty Name="status_name" ColumnName="status_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="FLYNIDBModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_getAllFlight" FunctionName="FLYNIDBModel.Store.sp_getAllFlight">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FLYNIDBModel.sp_getAllFlight_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="registro" ColumnName="registro" />
+          <ScalarProperty Name="category_name" ColumnName="category_name" />
+          <ScalarProperty Name="type_name" ColumnName="type_name" />
+          <ScalarProperty Name="airline_name" ColumnName="airline_name" />
+          <ScalarProperty Name="flight_number" ColumnName="flight_number" />
+          <ScalarProperty Name="city_name" ColumnName="city_name" />
+          <ScalarProperty Name="time" ColumnName="time" />
+          <ScalarProperty Name="status_name" ColumnName="status_name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_getFlight" FunctionName="FLYNIDBModel.Store.sp_getFlight">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FLYNIDBModel.sp_getFlight_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Registro" ColumnName="Registro" />
+          <ScalarProperty Name="category_name" ColumnName="category_name" />
+          <ScalarProperty Name="type_name" ColumnName="type_name" />
+          <ScalarProperty Name="airline_name" ColumnName="airline_name" />
+          <ScalarProperty Name="flight_number" ColumnName="flight_number" />
+          <ScalarProperty Name="city_name" ColumnName="city_name" />
+          <ScalarProperty Name="time" ColumnName="time" />
+          <ScalarProperty Name="status_name" ColumnName="status_name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="FLYNIDBModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FLYNIDBModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_setFlight" FunctionName="FLYNIDBModel.Store.sp_setFlight" />
+  </EntityContainerMapping>
+</Mapping>
