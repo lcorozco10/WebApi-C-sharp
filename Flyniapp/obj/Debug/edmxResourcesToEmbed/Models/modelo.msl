@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="FLYNIDBModelStoreContainer" CdmEntityContainer="FLYNIDBEntities">
+  <EntityContainerMapping StorageEntityContainer="FLYNIDBModelStoreContainer" CdmEntityContainer="FLYNIContext">
     <EntitySetMapping Name="Airline">
       <EntityTypeMapping TypeName="FLYNIDBModel.Airline">
         <MappingFragment StoreEntitySet="Airline">
@@ -76,6 +76,10 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_addAirline" FunctionName="FLYNIDBModel.Store.sp_addAirline" />
+    <FunctionImportMapping FunctionImportName="sp_addCity" FunctionName="FLYNIDBModel.Store.sp_addCity" />
+    <FunctionImportMapping FunctionImportName="sp_addFlight" FunctionName="FLYNIDBModel.Store.sp_addFlight" />
+    <FunctionImportMapping FunctionImportName="sp_addStatus" FunctionName="FLYNIDBModel.Store.sp_addStatus" />
     <FunctionImportMapping FunctionImportName="sp_getAllFlight" FunctionName="FLYNIDBModel.Store.sp_getAllFlight">
       <ResultMapping>
         <ComplexTypeMapping TypeName="FLYNIDBModel.sp_getAllFlight_Result">
@@ -86,7 +90,7 @@
           <ScalarProperty Name="airline_name" ColumnName="airline_name" />
           <ScalarProperty Name="flight_number" ColumnName="flight_number" />
           <ScalarProperty Name="city_name" ColumnName="city_name" />
-          <ScalarProperty Name="time" ColumnName="time" />
+          <ScalarProperty Name="time_dep_arri" ColumnName="time_dep_arri" />
           <ScalarProperty Name="status_name" ColumnName="status_name" />
         </ComplexTypeMapping>
       </ResultMapping>
@@ -106,18 +110,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="FLYNIDBModel.Store.sp_helpdiagramdefinition">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="FLYNIDBModel.sp_helpdiagramdefinition_Result">
-          <ScalarProperty Name="version" ColumnName="version" />
-          <ScalarProperty Name="definition" ColumnName="definition" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_setFlight" FunctionName="FLYNIDBModel.Store.sp_setFlight" />
-    <FunctionImportMapping FunctionImportName="sp_addAirline" FunctionName="FLYNIDBModel.Store.sp_addAirline" />
-    <FunctionImportMapping FunctionImportName="sp_addCity" FunctionName="FLYNIDBModel.Store.sp_addCity" />
-    <FunctionImportMapping FunctionImportName="sp_addFlight" FunctionName="FLYNIDBModel.Store.sp_addFlight" />
-    <FunctionImportMapping FunctionImportName="sp_addStatus" FunctionName="FLYNIDBModel.Store.sp_addStatus" />
   </EntityContainerMapping>
 </Mapping>

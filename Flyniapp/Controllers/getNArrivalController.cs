@@ -21,7 +21,7 @@ namespace Flyniapp.Controllers
         /// <returns>sp_getAllFlight_Result</returns>
         public IEnumerable<sp_getAllFlight_Result> getAllFlight()
         {
-
+           
             var obj = context.sp_getAllFlight(2);
 
             return obj;

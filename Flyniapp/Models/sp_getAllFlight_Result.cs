@@ -20,7 +20,7 @@ namespace Flyniapp.Models
         public string airline_name { get; set; }
         public int flight_number { get; set; }
         public string city_name { get; set; }
-        public string time { get; set; }
+        public System.TimeSpan time_dep_arri { get; set; }
         public string status_name { get; set; }
     }
 }

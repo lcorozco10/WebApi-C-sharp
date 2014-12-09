@@ -138,7 +138,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="FLYNIDBEntities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="FLYNIContext" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Airline" EntityType="Self.Airline" />
     <EntitySet Name="City" EntityType="Self.City" />
     <EntitySet Name="Flight" EntityType="Self.Flight" />
@@ -166,23 +166,6 @@
       <End Role="Flight_category" EntitySet="Flight_category" />
       <End Role="Flight_type" EntitySet="Flight_type" />
     </AssociationSet>
-    <FunctionImport Name="sp_getAllFlight" ReturnType="Collection(FLYNIDBModel.sp_getAllFlight_Result)">
-      <Parameter Name="id_flight_type" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="sp_getFlight" ReturnType="Collection(FLYNIDBModel.sp_getFlight_Result)">
-      <Parameter Name="id_reg_db" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(FLYNIDBModel.sp_helpdiagramdefinition_Result)">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="sp_setFlight">
-      <Parameter Name="id_flight_type" Mode="In" Type="Int32" />
-      <Parameter Name="city_name" Mode="In" Type="String" />
-      <Parameter Name="flight_number" Mode="In" Type="Int32" />
-      <Parameter Name="time_dep_arri" Mode="In" Type="Time" />
-      <Parameter Name="status_name" Mode="In" Type="String" />
-    </FunctionImport>
     <FunctionImport Name="sp_addAirline">
       <Parameter Name="airline_name" Mode="In" Type="String" />
     </FunctionImport>
@@ -200,6 +183,19 @@
     <FunctionImport Name="sp_addStatus">
       <Parameter Name="status_name" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="sp_getAllFlight" ReturnType="Collection(FLYNIDBModel.sp_getAllFlight_Result)">
+      <Parameter Name="id_flight_type" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_getFlight" ReturnType="Collection(FLYNIDBModel.sp_getFlight_Result)">
+      <Parameter Name="id_reg_db" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_setFlight">
+      <Parameter Name="id_flight_type" Mode="In" Type="Int32" />
+      <Parameter Name="city_name" Mode="In" Type="String" />
+      <Parameter Name="flight_number" Mode="In" Type="Int32" />
+      <Parameter Name="time_dep_arri" Mode="In" Type="Time" />
+      <Parameter Name="status_name" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="sp_getAllFlight_Result">
     <Property Type="Int32" Name="id" Nullable="false" />
@@ -209,7 +205,7 @@
     <Property Type="String" Name="airline_name" Nullable="false" MaxLength="50" />
     <Property Type="Int32" Name="flight_number" Nullable="false" />
     <Property Type="String" Name="city_name" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="time" Nullable="true" MaxLength="7" />
+    <Property Type="Time" Name="time_dep_arri" Nullable="false" />
     <Property Type="String" Name="status_name" Nullable="false" MaxLength="50" />
   </ComplexType>
   <ComplexType Name="sp_getFlight_Result">
@@ -222,9 +218,5 @@
     <Property Type="String" Name="city_name" Nullable="false" MaxLength="50" />
     <Property Type="String" Name="time" Nullable="true" MaxLength="7" />
     <Property Type="String" Name="status_name" Nullable="false" MaxLength="50" />
-  </ComplexType>
-  <ComplexType Name="sp_helpdiagramdefinition_Result">
-    <Property Type="Int32" Name="version" Nullable="true" />
-    <Property Type="Binary" Name="definition" Nullable="true" />
   </ComplexType>
 </Schema>

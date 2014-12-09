@@ -35,6 +35,62 @@ namespace Flyniapp.Models
         public virtual DbSet<Status> Status { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     
+        public virtual int sp_addAirline(string airline_name)
+        {
+            var airline_nameParameter = airline_name != null ?
+                new ObjectParameter("airline_name", airline_name) :
+                new ObjectParameter("airline_name", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_addAirline", airline_nameParameter);
+        }
+    
+        public virtual int sp_addCity(string city_name)
+        {
+            var city_nameParameter = city_name != null ?
+                new ObjectParameter("city_name", city_name) :
+                new ObjectParameter("city_name", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_addCity", city_nameParameter);
+        }
+    
+        public virtual int sp_addFlight(Nullable<int> id_flight_type, string airline_name, Nullable<int> flight_number, string city_name, Nullable<System.TimeSpan> time_dep_arri, string status_name)
+        {
+            var id_flight_typeParameter = id_flight_type.HasValue ?
+                new ObjectParameter("id_flight_type", id_flight_type) :
+                new ObjectParameter("id_flight_type", typeof(int));
+    
+            var airline_nameParameter = airline_name != null ?
+                new ObjectParameter("airline_name", airline_name) :
+                new ObjectParameter("airline_name", typeof(string));
+    
+            var flight_numberParameter = flight_number.HasValue ?
+                new ObjectParameter("flight_number", flight_number) :
+                new ObjectParameter("flight_number", typeof(int));
+    
+            var city_nameParameter = city_name != null ?
+                new ObjectParameter("city_name", city_name) :
+                new ObjectParameter("city_name", typeof(string));
+    
+            var time_dep_arriParameter = time_dep_arri.HasValue ?
+                new ObjectParameter("time_dep_arri", time_dep_arri) :
+                new ObjectParameter("time_dep_arri", typeof(System.TimeSpan));
+    
+            var status_nameParameter = status_name != null ?
+                new ObjectParameter("status_name", status_name) :
+                new ObjectParameter("status_name", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_addFlight", id_flight_typeParameter, airline_nameParameter, flight_numberParameter, city_nameParameter, time_dep_arriParameter, status_nameParameter);
+        }
+    
+        public virtual int sp_addStatus(string status_name)
+        {
+            var status_nameParameter = status_name != null ?
+                new ObjectParameter("status_name", status_name) :
+                new ObjectParameter("status_name", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_addStatus", status_nameParameter);
+        }
+    
         public virtual ObjectResult<sp_getAllFlight_Result> sp_getAllFlight(Nullable<int> id_flight_type)
         {
             var id_flight_typeParameter = id_flight_type.HasValue ?
@@ -51,19 +107,6 @@ namespace Flyniapp.Models
                 new ObjectParameter("id_reg_db", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_getFlight_Result>("sp_getFlight", id_reg_dbParameter);
-        }
-    
-        public virtual ObjectResult<sp_helpdiagramdefinition_Result> sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagramdefinition_Result>("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter);
         }
     
         public virtual int sp_setFlight(Nullable<int> id_flight_type, string city_name, Nullable<int> flight_number, Nullable<System.TimeSpan> time_dep_arri, string status_name)

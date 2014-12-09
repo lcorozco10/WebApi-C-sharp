@@ -1,3 +1,4 @@
+e:\visual studio 2013\Projects\Flyniapp\Flyniapp\bin\EntityFramework.SqlServer.xml
 e:\visual studio 2013\Projects\Flyniapp\Flyniapp\bin\Flyniapp.dll.config
 e:\visual studio 2013\Projects\Flyniapp\Flyniapp\bin\Flyniapp.dll
 e:\visual studio 2013\Projects\Flyniapp\Flyniapp\bin\Flyniapp.pdb
@@ -18,7 +19,6 @@ e:\visual studio 2013\Projects\Flyniapp\Flyniapp\bin\System.Web.WebPages.dll
 e:\visual studio 2013\Projects\Flyniapp\Flyniapp\bin\System.Web.WebPages.Razor.dll
 e:\visual studio 2013\Projects\Flyniapp\Flyniapp\bin\WebGrease.dll
 e:\visual studio 2013\Projects\Flyniapp\Flyniapp\bin\EntityFramework.xml
-e:\visual studio 2013\Projects\Flyniapp\Flyniapp\bin\EntityFramework.SqlServer.xml
 e:\visual studio 2013\Projects\Flyniapp\Flyniapp\bin\Newtonsoft.Json.xml
 e:\visual studio 2013\Projects\Flyniapp\Flyniapp\bin\System.Net.Http.Formatting.xml
 e:\visual studio 2013\Projects\Flyniapp\Flyniapp\bin\System.Web.Helpers.xml
@@ -33,3 +33,4 @@ e:\visual studio 2013\Projects\Flyniapp\Flyniapp\bin\System.Web.WebPages.Razor.x
 e:\visual studio 2013\Projects\Flyniapp\Flyniapp\bin\Antlr3.Runtime.pdb
 e:\visual studio 2013\Projects\Flyniapp\Flyniapp\obj\Debug\Flyniapp.dll
 e:\visual studio 2013\Projects\Flyniapp\Flyniapp\obj\Debug\Flyniapp.pdb
+e:\visual studio 2013\Projects\Flyniapp\Flyniapp\obj\Debug\Flyniapp.csprojResolveAssemblyReference.cache
